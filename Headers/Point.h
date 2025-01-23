@@ -4,37 +4,44 @@
 
 using namespace std;
 
+template <typename T>
+
 class Point {
     private:
-        int x;
-        int y;
+        T x;
+        T y;
 
     public:
         Point() { x = 0; y = 0; }
 
-        Point(int x, int y) : x( x ), y ( y ) {
+        Point(T x, T y) : x( x ), y ( y ) {
 
         }
+
+        template <typename U>
+        friend ostream &operator<<( ostream &os, 
+                                   const Point<U> &p );
+        template <typename U>
+        friend istream &operator>>(istream &is, 
+                                   Point<U> &p);
 
         Point operator+( const Point & );
         Point operator+=( const Point & );
 
         Point operator-( const Point &);
         Point operator-=( const Point & );
-
-        friend ostream &operator<<( ostream &os, 
-                                   const Point &p );
-        friend istream &operator>>(istream &is, 
-                                   Point &p);
 };
 
-Point Point::operator+(const Point &toAdd) {
+template <typename T>
+Point<T> Point<T>::operator+(const Point &toAdd) {
 
     return Point(x + toAdd.x,
                  y + toAdd.y);
 }
 
-Point Point::operator+=(const Point &toAdd) {
+template <typename T>
+
+Point<T> Point<T>::operator+=(const Point &toAdd) {
     
     x += toAdd.x;
     y += toAdd.y;
@@ -42,13 +49,16 @@ Point Point::operator+=(const Point &toAdd) {
     return *this;
 }
 
-Point Point::operator-(const Point &toSubtract) {
+template <typename T>
+
+Point<T> Point<T>::operator-(const Point &toSubtract) {
 
     return Point(x - toSubtract.x,
                  y - toSubtract.y);
 }
 
-Point Point::operator-=(const Point &toSubtract) {
+template <typename T>
+Point<T> Point<T>::operator-=(const Point &toSubtract) {
 
     x -= toSubtract.x;
     y -= toSubtract.y;
@@ -56,14 +66,17 @@ Point Point::operator-=(const Point &toSubtract) {
     return *this;
 }
 
-ostream &operator<<(ostream &out, const Point &point) {
+template <typename T>
+
+ostream &operator<<(ostream &out, const Point<T> &point) {
     out << "[" << point.x << ", " << point.y << "]" << endl;
     return out;
 }
 
-istream &operator>>(istream &in, Point &point) {
+template <typename T>
+
+istream &operator>>(istream &in, Point<T> &point) {
     cout << "enter x and y coordinates: " << endl;
     in >> point.x >> point.y;
     return in;
 }
-

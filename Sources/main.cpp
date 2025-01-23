@@ -5,20 +5,20 @@ using namespace std;
 
 int main() {
 
-    Point p1;
+    Point<double> p1;
     cout << "Point 1" << endl;
     cin >> p1;
 
-    Point p2;
+    Point<double> p2;
     cout << "Point 2" << endl;
     cin >> p2;
 
-    Point p3 = p1 + p2;
+    Point<double> p3 = p1 + p2;
     cout << p1 << " + " << p2 << " = " << p3 << endl;
     p1 += p2;
     cout << "Increment p1 by p2 to get: " << p1 << endl;
 
-    Point p4 = p1 - p2;
+    Point<double> p4 = p1 - p2;
     cout << p1 << " - " << p2 << " = " << p4 << endl;
     p1 -= p2;
     cout << "Decrement p1 by p2 to get: " << p1 << endl;
